@@ -117,12 +117,41 @@
       <div class="title">生成完了</div>
       <img id="resultImg" alt="自己PRシート画像" />
 
-      <div class="row">
+     <div class="row">
         <button id="btnRetry" class="btn wide">やり直し</button>
         <button id="btnSave" class="btn primary wide">保存</button>
       </div>
+      <div class="row">
+        <button id="btnOpen" class="btn wide">画像を別タブで開く</button>
+        <button id="btnClose" class="btn wide">とじる</button>
+      </div>
 
-      <div class="tiny">保存できない場合：画像を長押し→保存</div>
+      <div class="tiny">保存できない場合：画像を長押し→保存 / スクショでもOK</div>
+    </div>
+
+    <!-- END / CREDIT -->
+    <div id="screenCredit" class="card hidden">
+      <div class="title">完了</div>
+
+      <div class="box">
+        お疲れ様でしタ！これで明るい未来が待ってまス♡
+      </div>
+
+      <div class="row">
+        <a class="linkbtn btn wide" href="./about.html">この作品についての解説</a>
+        <button id="btnRestart" class="btn primary wide">最初に戻る</button>
+      </div>
+
+      <div class="tiny" style="margin-top:2px;">
+        ※当プログラムは一切の責任を負いませんのでご注意ください。
+      </div>
+
+      <div class="credit">
+        第74回 東京藝術大学 卒業・修了作品展<br>
+        「マザー・シューカーツ」<br>
+        東京藝術大学大学院 美術研究科 先端芸術表現専攻<br>
+        マッキン愛奈
+      </div>
     </div>
 
   </div>
@@ -1035,8 +1064,8 @@ document.addEventListener('DOMContentLoaded', function() {//読み込み時の�
       const img = new Image();
       img.onload = function() {//写真読み込み時の処理
         //ここに画像表示処理を突っ込む
-        document.getElementById("resultImg").src = session.displaySheetDataUrl;//表示する画像を指定している
-        // document.getElementById("resultImg").src = session.printDataUrl;//こっちを有効にしたら白黒の印刷用のやつが出る
+        // document.getElementById("resultImg").src = session.displaySheetDataUrl;//表示する画像を指定している
+        document.getElementById("resultImg").src = session.printDataUrl;//こっちを有効にしたら白黒の印刷用のやつが出る
         show("screenResult");
         console.log("Sheet generated");
       };
@@ -1052,8 +1081,8 @@ document.addEventListener('DOMContentLoaded', function() {//読み込み時の�
     if(!session.displaySheetDataUrl) return;
     const a = document.createElement("a");
     a.download = "shukatsu_sheet.png";
-    a.href = session.displaySheetDataUrl;//ここがDLさせるやつの参照
-    // a.href = session.printDataUrl;//こっちを有効にすれば白黒の印刷用のやつがDLできる
+    // a.href = session.displaySheetDataUrl;//ここがDLさせるやつの参照
+    a.href = session.printDataUrl;//こっちを有効にすれば白黒の印刷用のやつがDLできる
     document.body.appendChild(a);
     a.click();
     a.remove();
