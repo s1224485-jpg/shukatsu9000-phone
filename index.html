@@ -1087,7 +1087,24 @@ document.addEventListener('DOMContentLoaded', function() {//読み込み時の�
     a.click();
     a.remove();
   });
+
+  document.getElementById("btnOpen").onclick = () => {
+  if(!session.displaySheetDataUrl) return;
+  const w = window.open();
+  if(!w) return;
+  w.document.write(`<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><img src="${session.displaySheetDataUrl}" style="width:100%;height:auto;">`);
+};
+
+document.getElementById("btnClose").onclick = () => show("screenCredit");
+
+document.getElementById("btnRestart").onclick = () => {
+    [nameEl,q1El,q2El,q3El].forEach(el=>el.value="");
+  session.photoDataUrl = null;
+  session.displaySheetDataUrl = null;
+  show("screenStart");
+};
   
+show("screenStart");
   console.log("All event listeners set successfully!");
 });
 
